@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+</head>
+<style>
+    .todo{
+        border: 4px double navy;
+        margin: 10px;
+        padding: 10px;
+        background: lightblue;
+        color: darkblue;
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+    }
+    .btn-delete{
+        border: none;
+        border-radius: 1rem;
+        padding: 5px 15px;
+        font-size: 14px;
+        background-color: lightcyan;
+    }
+</style>
+<body>
+    <h1>to do list</h1>
+    <div class="main-container" id="to-doContainer">
+
+    </div>   
+    <script>
+        const tolist = ["Buy groceries", "Go to the gym", "Do homework", "Cook dinner"];
+        // let hey =   tolist.indexOf('Do homework')
+        // console.log(hey)
+        function todofun() {
+            const todoContainer = document.getElementById("to-doContainer");
+            todoContainer.innerHTML= "";
+            for (let i = 0; i < tolist.length; i++) {
+                let op=tolist[i];
+                    todoContainer.innerHTML += `
+                    <div class="todo">
+                        ${op}
+                        <button class="btn-delete" type="submit"  onclick="Delete('${op}')">
+                            Delete
+                            </button>
+                    </div>
+                    `   
+            }
+            // for(task of tolist){
+            //     todoContainer.innerHTML += `
+            //         <div class="todo">
+            //              ${task}
+            //              <button class="btn-delete" type="submit"  onclick="Delete('${task}')">
+            //                 Delete
+            //                  </button>
+            //         </div>
+            //      `   
+            // }
+        }
+        todofun();
+        function Delete(op) {
+            const deleteindex= tolist.indexOf(op);
+                console.log(deleteindex);
+            tolist.splice(deleteindex , 1);
+            todofun();
+        }
+       
+    </script>
+</body>
+</html>
