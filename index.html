@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDoList</title>
 </head>
 <style>
-    .todo{
+    .todo {
         border: 4px double navy;
         margin: 10px;
         padding: 10px;
@@ -16,28 +17,33 @@
         justify-content: space-between;
         font-size: 20px;
     }
-    .btn-delete{
+
+    .btn-delete {
         border: none;
         border-radius: 1rem;
         padding: 5px 15px;
         font-size: 14px;
         background-color: lightcyan;
     }
-    .main-container{
+
+    .main-container {
         height: 50vh;
         width: 50%;
         margin: auto;
         overflow-y: scroll;
-         
+
     }
 </style>
-<body>
-    <h1>to do list</h1>
-    <div class="main-container" id="to-doContainer">
 
-    </div>   
-    <input type="text"  id="addtsk" placeholder="Add task">
-    <button id="addbtn" type="submit" onclick="addtask()">Add task</button>
+<body>
+    <div class="main">
+        <h1>to do list</h1>
+        <div class="main-container" id="to-doContainer">
+
+        </div>
+        <input type="text" id="addtsk" placeholder="Add task">
+        <button id="addbtn" type="submit" onclick="addtask()">Add task</button>
+    </div>
     <script>
         const tolist = [];
         function localstorage() {
@@ -51,19 +57,19 @@
         // let hey =   tolist.indexOf('Do homework')
         // console.log(hey)
         function todofun() {
-            localStorage.setItem("allist",JSON.stringify(tolist));
+            localStorage.setItem("allist", JSON.stringify(tolist));
             const todoContainer = document.getElementById("to-doContainer");
-            todoContainer.innerHTML= "";
+            todoContainer.innerHTML = "";
             for (let i = 0; i < tolist.length; i++) {
-                let op=tolist[i];
-                    todoContainer.innerHTML += `
+                let op = tolist[i];
+                todoContainer.innerHTML += `
                     <div class="todo">
                         ${op}
                         <button class="btn-delete" type="submit"  onclick="Delete('${op}')">
                             Delete
                             </button>
                     </div>
-                    `   
+                    `
             }
             // for(task of tolist){
             //     todoContainer.innerHTML += `
@@ -78,22 +84,23 @@
         }
         todofun();
         function Delete(op) {
-            const deleteindex= tolist.indexOf(op);
-                console.log(deleteindex);
-            tolist.splice(deleteindex , 1);
+            const deleteindex = tolist.indexOf(op);
+            console.log(deleteindex);
+            tolist.splice(deleteindex, 1);
             todofun();
         }
         function addtask() {
             const taskElement = document.getElementById("addtsk");
             const task = taskElement.value;
             if (!task) {
-               alert("Please enter a task")
-               return;
+                alert("Please enter a task")
+                return;
+            }
+            tolist.push(task);
+            todofun();
+            taskElement.value = "";
         }
-        tolist.push(task);
-        todofun();
-        taskElement.value = "";
-    }
     </script>
 </body>
+
 </html>

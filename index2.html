@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+</head>
+<style>
+    .mainconatainer{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+    }
+    .div{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .todolist{
+        border: 2px solid black;
+        padding: 10px;
+        width: 40%;
+        height: 70vh;
+        background-color: blue;
+    }
+    .completed-task{
+        border: 2px solid black;
+        background-color: green;
+        padding: 10px;
+        width: 40%;
+        height: 70vh;
+    }
+    .input-container{
+        margin-top: 2rem;
+        justify-content: center;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .inp-box{
+        width: 50%;
+        height: 30px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .btn-sub{
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        background-color: blue;
+        color: white;
+        border: none;
+    }
+</style>
+<body>
+    
+    <div class="mainconatainer">
+        <h1 class="title">ToDoList</h1>
+       <div class="div">
+        <div class="todolist" id="tolist"></div>
+        <div class="completed-task" id="completed-task"></div>
+        </div> 
+        <div class="input-container">
+        <input type="text" class="inp-box" id="inputvalue">
+        <button class="btn-sub" type="submit" onclick="localStorage()">Submit</button>
+        </div>
+    </div>
+    <script>
+        const tolist = [];
+        let list = localStorage.setItem('storage', JSON.stringify(tolist))
+
+        function localStorage() {
+            const inputElement = document.getElementById("inputvalue");
+            const invalue = inputElement.value;
+            console.log(invalue);
+            
+            tolist.push(invalue);
+            console.log(tolist);
+            // localS();
+        }
+        // function localS() {
+        //     localStorage.setItem("storages",JSON.stringify(tolist))
+        // }
+    </script>
+</body>
+</html>
